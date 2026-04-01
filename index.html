@@ -406,7 +406,7 @@ background: transparent;
   <p class="desc">這不是測驗，沒有標準答案。<br>只是一些問題，讓你停下來想一想。</p>
   <p class="name-label">你叫什麼名字？</p>
   <input id="nameInput" type="text" placeholder="填你的名字或暱稱" maxlength="20">
-  <button id="startBtn" onclick="startQuiz()">開始 →</button>
+  <button id="startBtn">開始 →</button>
 </div>
 
 <div id="quiz">
@@ -434,8 +434,8 @@ background: transparent;
     </div>
     <div id="answersBlock"></div>
     <div class="result-actions">
-      <button class="rbtn rbtn-sky" onclick="window.print()">存成 PDF 留存</button>
-      <button class="rbtn rbtn-light" onclick="restart()">重新填寫</button>
+      <button class="rbtn rbtn-sky" id="printBtn">存成 PDF 留存</button>
+      <button class="rbtn rbtn-light" id="restartBtn">重新填寫</button>
     </div>
   </div>
 </div>
@@ -510,8 +510,9 @@ wrap.appendChild(card);
 }
 
 var sub = document.createElement(‘div’);
-sub.innerHTML = ‘<button class="submit-btn" onclick="showResult()">查看我的自我盤點結果 →</button><p class="skip-note">不用填完每一題，想跳過的就跳過</p>’;
+sub.innerHTML = ‘<button class="submit-btn" id="submitBtn">查看我的自我盤點結果 →</button><p class="skip-note">不用填完每一題，想跳過的就跳過</p>’;
 wrap.appendChild(sub);
+document.getElementById(‘submitBtn’).addEventListener(‘click’, showResult);
 }
 
 function updateProgress() {
@@ -607,6 +608,10 @@ document.getElementById(‘result’).style.display = ‘none’;
 document.getElementById(‘cover’).style.display = ‘flex’;
 window.scrollTo(0, 0);
 }
+
+document.getElementById(‘startBtn’).addEventListener(‘click’, startQuiz);
+document.getElementById(‘printBtn’).addEventListener(‘click’, function() { window.print(); });
+document.getElementById(‘restartBtn’).addEventListener(‘click’, restart);
 </script>
 
 </body>
