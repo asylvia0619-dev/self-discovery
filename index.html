@@ -228,6 +228,12 @@ document.getElementById(‘result’).style.display = ‘none’;
 document.getElementById(‘cover’).style.display = ‘flex’;
 window.scrollTo(0, 0);
 }
+
+var testEl = document.getElementById(‘jstest’);
+if (testEl) testEl.textContent = ‘JS 正常運作 ✓’;
+document.getElementById(‘startBtn’).onclick = function() { startQuiz(); return false; };
+document.getElementById(‘printBtn2’).onclick = function() { window.print(); return false; };
+document.getElementById(‘restartBtn2’).onclick = function() { restart(); return false; };
 </script>
 
 </body>
