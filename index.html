@@ -63,20 +63,22 @@ h1 span { color:#1a6fa8; }
 </style>
 </head>
 <body>
+
 <div id="cover">
   <div class="badge">Self Discovery · 自我探索</div>
   <h1>你比你以為的<span>更好。</span></h1>
   <p class="desc">這不是測驗，沒有標準答案。<br>只是一些問題，讓你停下來想一想。</p>
   <p class="nlabel">你叫什麼名字？</p>
   <input id="nameInput" type="text" placeholder="填你的名字或暱稱" maxlength="20">
-  <button id="startBtn">開始 →</button>
-  <p id="jstest" style="margin-top:16px;font-size:12px;color:#999;">JS 載入中…</p>
+  <button id="startBtn" onclick="startQuiz()">開始 →</button>
 </div>
+
 <div id="quiz">
   <div class="ptrack"><div id="pbar"></div></div>
   <div class="qtop"><span id="quizName"></span><span id="qcount"></span></div>
   <div class="qwrap" id="qWrap"></div>
 </div>
+
 <div id="result">
   <div class="rhero">
     <div class="rhl">你的自我盤點報告</div>
@@ -90,150 +92,136 @@ h1 span { color:#1a6fa8; }
     </div>
     <div id="ansblock"></div>
     <div class="racts">
-      <button class="rbtn rbtn1" id="printBtn2">存成 PDF 留存</button>
-      <button class="rbtn rbtn2" id="restartBtn2">重新填寫</button>
+      <button class="rbtn rbtn1" onclick="window.print()">存成 PDF 留存</button>
+      <button class="rbtn rbtn2" onclick="restart()">重新填寫</button>
     </div>
   </div>
 </div>
-<script>
-var questions = [
-  { tag:'strength', tagText:'✦ 優勢探索', text:'有沒有某件事，你不覺得難，但看到別人覺得很費力？', hint:'可能是溝通、記憶細節、快速判斷、陪伴……任何事都算。', ph:'不用謙虛，就說你想到的第一個' },
-  { tag:'strength', tagText:'✦ 優勢探索', text:'你的朋友或身邊的人，最常在什麼事情上找你？', hint:'他們來找你，代表他們相信你在這方面是可靠的。', ph:'每次要……的時候，都會想到你' },
-  { tag:'strength', tagText:'✦ 優勢探索', text:'做哪件事的時候，你完全不需要提醒自己要努力？', hint:'就是那種做起來自然、甚至停不下來的事。', ph:'一進入那個狀態，時間就不知道去哪了' },
-  { tag:'strength', tagText:'✦ 優勢探索', text:'你最近做過，讓自己心裡有點驕傲的一件小事是什麼？', hint:'不用是大事。哪怕只是一句話說對了、一件事沒放棄。', ph:'就算沒有人知道，你自己知道' },
-  { tag:'growth', tagText:'▲ 成長空間', text:'你有沒有一個一直想改、但一直沒改的習慣？', hint:'不是要你批判自己，只是誠實說出來。說出來，它就沒那麼大了。', ph:'說出來不代表你很糟，只代表你夠誠實' },
-  { tag:'growth', tagText:'▲ 成長空間', text:'什麼情況下，你最容易對自己不滿意？', hint:'是跟別人比較？事情沒達到預期？還是某種感覺來了？', ph:'這個情況通常長這樣' },
-  { tag:'growth', tagText:'▲ 成長空間', text:'如果有人能替你解決一個困擾，你希望那個困擾是什麼？', hint:'現實面、心態面都可以。不用想太多，直覺說。', ph:'我最希望有人能幫我' },
-  { tag:'blind', tagText:'◈ 盲點觀察', text:'你有沒有收過某個評價，當下覺得不舒服，但後來知道對方說的是真的？', hint:'不舒服往往是因為太準。這道題可以跳過，但建議想一想。', ph:'那個評價是（可以只寫關鍵字）' },
-  { tag:'blind', tagText:'◈ 盲點觀察', text:'你身邊最了解你的人，會說你的缺點是什麼？', hint:'試著用那個人的視角說。不是你認為的缺點，是他們說的那個。', ph:'他們大概會說，我這個人有時候' },
-  { tag:'growth', tagText:'◇ 最後一題', text:'如果半年後的你，有一件事比現在做得更好，你最希望是哪件事？', hint:'不是願望清單。就選一件，最重要的那個。', ph:'我希望那時候的我，已經' }
+
+<script type="text/javascript">
+var Q=[
+  {tag:'strength',tt:'✦ 優勢探索',tx:'有沒有某件事，你不覺得難，但看到別人覺得很費力？',hi:'可能是溝通、記憶細節、快速判斷、陪伴……任何事都算。',ph:'不用謙虛，就說你想到的第一個'},
+  {tag:'strength',tt:'✦ 優勢探索',tx:'你的朋友或身邊的人，最常在什麼事情上找你？',hi:'他們來找你，代表他們相信你在這方面是可靠的。',ph:'每次要……的時候，都會想到你'},
+  {tag:'strength',tt:'✦ 優勢探索',tx:'做哪件事的時候，你完全不需要提醒自己要努力？',hi:'就是那種做起來自然、甚至停不下來的事。',ph:'一進入那個狀態，時間就不知道去哪了'},
+  {tag:'strength',tt:'✦ 優勢探索',tx:'你最近做過，讓自己心裡有點驕傲的一件小事是什麼？',hi:'不用是大事。哪怕只是一句話說對了、一件事沒放棄。',ph:'就算沒有人知道，你自己知道'},
+  {tag:'growth',tt:'▲ 成長空間',tx:'你有沒有一個一直想改、但一直沒改的習慣？',hi:'不是要你批判自己，只是誠實說出來。說出來，它就沒那麼大了。',ph:'說出來不代表你很糟，只代表你夠誠實'},
+  {tag:'growth',tt:'▲ 成長空間',tx:'什麼情況下，你最容易對自己不滿意？',hi:'是跟別人比較？事情沒達到預期？還是某種感覺來了？',ph:'這個情況通常長這樣'},
+  {tag:'growth',tt:'▲ 成長空間',tx:'如果有人能替你解決一個困擾，你希望那個困擾是什麼？',hi:'現實面、心態面都可以。不用想太多，直覺說。',ph:'我最希望有人能幫我'},
+  {tag:'blind',tt:'◈ 盲點觀察',tx:'你有沒有收過某個評價，當下覺得不舒服，但後來知道對方說的是真的？',hi:'不舒服往往是因為太準。這道題可以跳過，但建議想一想。',ph:'那個評價是（可以只寫關鍵字）'},
+  {tag:'blind',tt:'◈ 盲點觀察',tx:'你身邊最了解你的人，會說你的缺點是什麼？',hi:'試著用那個人的視角說。不是你認為的缺點，是他們說的那個。',ph:'他們大概會說，我這個人有時候'},
+  {tag:'growth',tt:'◇ 最後一題',tx:'如果半年後的你，有一件事比現在做得更好，你最希望是哪件事？',hi:'不是願望清單。就選一件，最重要的那個。',ph:'我希望那時候的我，已經'}
 ];
-var breaks = { 0:'先從你做得好的地方開始', 4:'誠實看一看還沒解決的部分', 7:'有些事，我們自己最後才看到', 9:'最後一題' };
-var answers = [];
-var userName = '';
-for (var i = 0; i < questions.length; i++) { answers.push(''); }
+var BR={0:'先從你做得好的地方開始',4:'誠實看一看還沒解決的部分',7:'有些事，我們自己最後才看到',9:'最後一題'};
+var A=[];for(var i=0;i<Q.length;i++){A.push('');}
+var UN='';
 
-window.onload = function() {
-var testEl = document.getElementById(‘jstest’);
-if (testEl) testEl.textContent = ‘JS 正常運作 ✓’;
-document.getElementById(‘startBtn’).onclick = function() { startQuiz(); return false; };
-document.getElementById(‘printBtn2’).onclick = function() { window.print(); return false; };
-document.getElementById(‘restartBtn2’).onclick = function() { restart(); return false; };
-};
-
-function startQuiz() {
-var n = document.getElementById(‘nameInput’).value.trim();
-userName = n ? n : ‘你’;
-document.getElementById(‘cover’).style.display = ‘none’;
-document.getElementById(‘quiz’).style.display = ‘block’;
-document.getElementById(‘quizName’).textContent = ‘嗨，’ + userName + ‘。’;
-buildQuestions();
-updateProgress();
-window.scrollTo(0, 0);
+function startQuiz(){
+  var n=document.getElementById('nameInput').value.trim();
+  UN=n?n:'你';
+  document.getElementById('cover').style.display='none';
+  document.getElementById('quiz').style.display='block';
+  document.getElementById('quizName').textContent='嗨，'+UN+'。';
+  buildQ();
+  upProg();
+  window.scrollTo(0,0);
 }
 
-function buildQuestions() {
-var wrap = document.getElementById(‘qWrap’);
-wrap.innerHTML = ‘’;
-for (var i = 0; i < questions.length; i++) {
-var q = questions[i];
-if (breaks[i] !== undefined) {
-var dv = document.createElement(‘div’);
-dv.className = ‘sdiv’;
-dv.innerHTML = ‘<span class="sline"></span><span>’ + breaks[i] + ‘</span><span class="sline"></span>’;
-wrap.appendChild(dv);
-}
-var card = document.createElement(‘div’);
-card.className = ‘qcard’;
-var tc = q.tag === ‘strength’ ? ‘ts’ : q.tag === ‘growth’ ? ‘tg’ : ‘tb’;
-card.innerHTML = ‘<div class="qtag ' + tc + '">’ + q.tagText + ‘</div><div class="qtext">’ + q.text + ‘</div><div class="qhint">’ + q.hint + ‘</div><textarea class="qta" placeholder="' + q.ph + '" rows="3"></textarea>’;
-(function(idx) {
-var ta = card.querySelector(‘textarea’);
-ta.value = answers[idx];
-ta.oninput = function() {
-answers[idx] = this.value;
-updateProgress();
-this.style.height = ‘auto’;
-this.style.height = Math.max(80, this.scrollHeight) + ‘px’;
-};
+function buildQ(){
+  var w=document.getElementById('qWrap');
+  w.innerHTML='';
+  for(var i=0;i<Q.length;i++){
+    var q=Q[i];
+    if(BR[i]!==undefined){
+      var dv=document.createElement('div');
+      dv.className='sdiv';
+      dv.innerHTML='<span class="sline"></span><span>'+BR[i]+'</span><span class="sline"></span>';
+      w.appendChild(dv);
+    }
+    var c=document.createElement('div');
+    c.className='qcard';
+    var tc=q.tag==='strength'?'ts':q.tag==='growth'?'tg':'tb';
+    c.innerHTML='<div class="qtag '+tc+'">'+q.tt+'</div><div class="qtext">'+q.tx+'</div><div class="qhint">'+q.hi+'</div><textarea class="qta" placeholder="'+q.ph+'" rows="3"></textarea>';
+
+```
+(function(idx){
+  var ta=c.querySelector('textarea');
+  ta.value=A[idx];
+  ta.oninput=function(){
+    A[idx]=this.value;
+    upProg();
+    this.style.height='auto';
+    this.style.height=Math.max(80,this.scrollHeight)+'px';
+  };
 })(i);
-wrap.appendChild(card);
+w.appendChild(c);
+```
+
 }
-var sub = document.createElement(‘div’);
-sub.innerHTML = ‘<button class="subbtn" id="submitBtn">查看我的自我盤點結果 →</button><p class="skipnote">不用填完每一題，想跳過的就跳過</p>’;
-wrap.appendChild(sub);
-document.getElementById(‘submitBtn’).onclick = function() { showResult(); return false; };
+var sb=document.createElement(‘div’);
+sb.innerHTML=’<button class="subbtn" onclick="showResult()">查看我的自我盤點結果 →</button><p class="skipnote">不用填完每一題，想跳過的就跳過</p>’;
+w.appendChild(sb);
 }
 
-function updateProgress() {
-var filled = 0;
-for (var i = 0; i < answers.length; i++) { if (answers[i].trim()) filled++; }
-document.getElementById(‘pbar’).style.width = (filled / questions.length * 100) + ‘%’;
-document.getElementById(‘qcount’).textContent = filled + ’ / ’ + questions.length + ’ 題已填’;
+function upProg(){
+var f=0;for(var i=0;i<A.length;i++){if(A[i].trim())f++;}
+document.getElementById(‘pbar’).style.width=(f/Q.length*100)+’%’;
+document.getElementById(‘qcount’).textContent=f+’ / ‘+Q.length+’ 題已填’;
 }
 
-function genAnalysis() {
-var s = 0, g = 0, b = 0;
-for (var i = 0; i < 4; i++) { if (answers[i].trim()) s++; }
-for (var i = 4; i < 7; i++) { if (answers[i].trim()) g++; }
-for (var i = 7; i < 9; i++) { if (answers[i].trim()) b++; }
-var last = answers[9].trim();
-var filled = 0;
-for (var i = 0; i < answers.length; i++) { if (answers[i].trim()) filled++; }
-var str = s >= 3 ? ‘從你的回答來看，你對自己的優勢有相當清楚的認識——這本身就是一種自覺，很多人做不到。你提到的那些事，背後有一個共同點：你在這些地方是真的投入，不是勉強。這種不需要提醒自己努力的狀態，才是真正值得放大的地方。’ : s >= 1 ? ‘你說出來的那個優勢是真實的。比起列一堆說不清楚的優點，能說出具體的一件事，已經比大多數人更誠實了。’ : ‘優勢那幾題你跳過了。不一定是沒有優勢——有時候是太習慣了，反而看不見。試著問問身邊的人：你覺得我做什麼事特別自然？答案往往讓你意外。’;
-var grw = g >= 2 ? ‘你在成長那幾題說得很直接，這是好事。能說出一直想改但沒改的人，通常不是缺乏能力，而是還沒找到對的切入點。你提到的困擾，解法往往不是更努力，而是改變一個小習慣或換一個角度。’ : g >= 1 ? ‘你提到了一個想改變的地方。光是願意說出來，已經是開始了。接下來的問題不是要不要改，而是從哪個最小的動作開始。’ : ‘成長的部分你選擇跳過，沒關係。等你準備好的時候，這幾題值得再回來想一想。’;
-var bld = b >= 1 ? ‘你願意填盲點那幾題，這不容易——大多數人會跳過。你說的那個別人對你的評價，值得多停留一下。不舒服的評價往往準，不是因為對方壞，而是他們看到了你還沒準備好承認的部分。’ : ‘盲點之所以是盲點，就是因為自己不容易看到。如果你身邊有一個說話直接又真心對你好的人，可以試著問他：你覺得我哪裡有時候會讓人誤解？’;
-var cls = last ? ‘你說半年後希望自己「’ + last.slice(0, 20) + (last.length > 20 ? ‘……’ : ‘’) + ‘」——這個答案本身已經告訴你方向了。你不是不知道要去哪，你只是需要開始動。’ : filled >= 6 ? ‘你填了很多，代表你是認真的。認真的人最容易犯的錯，是想太多、動太少。先做一件小的，再說。’ : ‘填多填少都沒關係，重要的是你打開了這個問卷。願意停下來問自己問題的人，早晚會找到答案。’;
-return ‘【你的核心優勢】\n’ + str + ‘\n\n【最值得關注的成長機會】\n’ + grw + ‘\n\n【一個你可能沒注意到的盲點】\n’ + bld + ‘\n\n【給 ’ + userName + ’ 的一句話】\n’ + cls;
+function genA(){
+var s=0,g=0,b=0;
+for(var i=0;i<4;i++){if(A[i].trim())s++;}
+for(var i=4;i<7;i++){if(A[i].trim())g++;}
+for(var i=7;i<9;i++){if(A[i].trim())b++;}
+var last=A[9].trim();
+var f=0;for(var i=0;i<A.length;i++){if(A[i].trim())f++;}
+var str=s>=3?‘從你的回答來看，你對自己的優勢有相當清楚的認識——這本身就是一種自覺，很多人做不到。你提到的那些事，背後有一個共同點：你在這些地方是真的投入，不是勉強。這種不需要提醒自己努力的狀態，才是真正值得放大的地方。’:s>=1?‘你說出來的那個優勢是真實的。比起列一堆說不清楚的優點，能說出具體的一件事，已經比大多數人更誠實了。’:‘優勢那幾題你跳過了。不一定是沒有優勢——有時候是太習慣了，反而看不見。試著問問身邊的人：你覺得我做什麼事特別自然？答案往往讓你意外。’;
+var grw=g>=2?‘你在成長那幾題說得很直接，這是好事。能說出一直想改但沒改的人，通常不是缺乏能力，而是還沒找到對的切入點。你提到的困擾，解法往往不是更努力，而是改變一個小習慣或換一個角度。’:g>=1?‘你提到了一個想改變的地方。光是願意說出來，已經是開始了。接下來的問題不是要不要改，而是從哪個最小的動作開始。’:‘成長的部分你選擇跳過，沒關係。等你準備好的時候，這幾題值得再回來想一想。’;
+var bld=b>=1?‘你願意填盲點那幾題，這不容易——大多數人會跳過。你說的那個別人對你的評價，值得多停留一下。不舒服的評價往往準，不是因為對方壞，而是他們看到了你還沒準備好承認的部分。’:‘盲點之所以是盲點，就是因為自己不容易看到。如果你身邊有一個說話直接又真心對你好的人，可以試著問他：你覺得我哪裡有時候會讓人誤解？’;
+var cls=last?‘你說半年後希望自己「’+last.slice(0,20)+(last.length>20?’……’:’’)+’」——這個答案本身已經告訴你方向了。你不是不知道要去哪，你只是需要開始動。’:f>=6?‘你填了很多，代表你是認真的。認真的人最容易犯的錯，是想太多、動太少。先做一件小的，再說。’:‘填多填少都沒關係，重要的是你打開了這個問卷。願意停下來問自己問題的人，早晚會找到答案。’;
+return ‘【你的核心優勢】\n’+str+’\n\n【最值得關注的成長機會】\n’+grw+’\n\n【一個你可能沒注意到的盲點】\n’+bld+’\n\n【給 ‘+UN+’ 的一句話】\n’+cls;
 }
 
-function showResult() {
-document.getElementById(‘quiz’).style.display = ‘none’;
-document.getElementById(‘result’).style.display = ‘block’;
-window.scrollTo(0, 0);
-var filled = 0;
-for (var i = 0; i < answers.length; i++) { if (answers[i].trim()) filled++; }
-document.getElementById(‘rname’).textContent = userName + ‘，你好。’;
-document.getElementById(‘rsub’).textContent = filled >= 7 ? ‘你認真填完了這份問卷。這就是了解自己的方式——不是找答案，是願意問自己問題。’ : ‘有些題你選擇跳過，也許那裡有什麼在等你。慢慢來，不急。’;
-document.getElementById(‘aicontent’).textContent = genAnalysis();
-var grouped = { strength:[], growth:[], blind:[] };
-for (var i = 0; i < questions.length; i++) {
-var q = questions[i]; var obj = { q:q, a:answers[i] };
-if (q.tag === ‘strength’) grouped.strength.push(obj);
-else if (q.tag === ‘growth’) grouped.growth.push(obj);
-else grouped.blind.push(obj);
+function showResult(){
+document.getElementById(‘quiz’).style.display=‘none’;
+document.getElementById(‘result’).style.display=‘block’;
+window.scrollTo(0,0);
+var f=0;for(var i=0;i<A.length;i++){if(A[i].trim())f++;}
+document.getElementById(‘rname’).textContent=UN+’，你好。’;
+document.getElementById(‘rsub’).textContent=f>=7?‘你認真填完了這份問卷。這就是了解自己的方式——不是找答案，是願意問自己問題。’:‘有些題你選擇跳過，也許那裡有什麼在等你。慢慢來，不急。’;
+document.getElementById(‘aicontent’).textContent=genA();
+var grp={strength:[],growth:[],blind:[]};
+for(var i=0;i<Q.length;i++){
+var obj={q:Q[i],a:A[i]};
+if(Q[i].tag===‘strength’)grp.strength.push(obj);
+else if(Q[i].tag===‘growth’)grp.growth.push(obj);
+else grp.blind.push(obj);
 }
-var block = document.getElementById(‘ansblock’);
-block.innerHTML = ‘’;
-var secs = [
-{ key:‘strength’, dc:‘dg’, tc:‘tg2’, label:‘✦ 優勢探索’ },
-{ key:‘growth’, dc:‘da’, tc:‘ta2’, label:‘▲ 成長空間與目標’ },
-{ key:‘blind’, dc:‘dr’, tc:‘tr2’, label:‘◈ 盲點觀察’ }
+var blk=document.getElementById(‘ansblock’);
+blk.innerHTML=’’;
+var secs=[
+{key:‘strength’,dc:‘dg’,tc:‘tg2’,lb:‘✦ 優勢探索’},
+{key:‘growth’,dc:‘da’,tc:‘ta2’,lb:‘▲ 成長空間與目標’},
+{key:‘blind’,dc:‘dr’,tc:‘tr2’,lb:‘◈ 盲點觀察’}
 ];
-for (var si = 0; si < secs.length; si++) {
-var s = secs[si]; var sec = document.createElement(‘div’); sec.className = ‘rsec’;
-var rows = ‘’; var items = grouped[s.key];
-for (var ri = 0; ri < items.length; ri++) {
-var item = items[ri];
-rows += ‘<div class="ritem"><div class="rq">’ + item.q.text + ‘</div><div class="ra' + (item.a.trim() ? '' : ' empty') + '">’ + (item.a.trim() ? item.a : ‘（這題跳過了）’) + ‘</div></div>’;
+for(var si=0;si<secs.length;si++){
+var s=secs[si];var sec=document.createElement(‘div’);sec.className=‘rsec’;
+var rows=’’;var items=grp[s.key];
+for(var ri=0;ri<items.length;ri++){
+var it=items[ri];
+rows+=’<div class="ritem"><div class="rq">’+it.q.tx+’</div><div class="ra'+(it.a.trim()?'':' empty')+'">’+(it.a.trim()?it.a:’（這題跳過了）’)+’</div></div>’;
 }
-sec.innerHTML = ‘<div class="rhead"><div class="dot ' + s.dc + '"></div><div class="rtitle ' + s.tc + '">’ + s.label + ‘</div></div>’ + rows;
-block.appendChild(sec);
+sec.innerHTML=’<div class="rhead"><div class="dot '+s.dc+'"></div><div class="rtitle '+s.tc+'">’+s.lb+’</div></div>’+rows;
+blk.appendChild(sec);
 }
-}
-
-function restart() {
-for (var i = 0; i < answers.length; i++) { answers[i] = ‘’; }
-document.getElementById(‘result’).style.display = ‘none’;
-document.getElementById(‘cover’).style.display = ‘flex’;
-window.scrollTo(0, 0);
 }
 
-var testEl = document.getElementById(‘jstest’);
-if (testEl) testEl.textContent = ‘JS 正常運作 ✓’;
-document.getElementById(‘startBtn’).onclick = function() { startQuiz(); return false; };
-document.getElementById(‘printBtn2’).onclick = function() { window.print(); return false; };
-document.getElementById(‘restartBtn2’).onclick = function() { restart(); return false; };
+function restart(){
+for(var i=0;i<A.length;i++){A[i]=’’;}
+document.getElementById(‘result’).style.display=‘none’;
+document.getElementById(‘cover’).style.display=‘flex’;
+window.scrollTo(0,0);
+}
 </script>
 
 </body>
