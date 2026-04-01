@@ -6,51 +6,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>你比你以為的更好</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700;900&display=swap');
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-–sky-deep:   #1a6fa8;
-–sky:        #2d8fd4;
-–sky-mid:    #5aaee8;
-–sky-light:  #a8d4f0;
-–sky-pale:   #dceefa;
-–sky-faint:  #f0f7fd;
-–white:      #ffffff;
-–ink:        #0d2233;
-–ink-mid:    #2e4a60;
-–ink-light:  #5a7a94;
-–rule:       #cde3f4;
-–rule-light: #e8f3fb;
-–green:      #1e8a5e;
-–green-bg:   #e8f7f1;
-–amber:      #b86a10;
-–amber-bg:   #fdf3e4;
-–rose:       #b03060;
-–rose-bg:    #fce8ef;
-–serif: ‘Noto Serif TC’, ‘Source Han Serif TC’, ‘思源宋體’, serif;
-–sans: ‘PingFang TC’, ‘Heiti TC’, ‘Microsoft JhengHei’, sans-serif;
-}
-
-html { font-size: 15px; scroll-behavior: smooth; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-background: var(–sky-faint);
-color: var(–ink);
-font-family: var(–serif);
+font-family: ‘PingFang TC’, ‘Heiti TC’, ‘Microsoft JhengHei’, sans-serif;
+background: #f0f7fd;
+color: #0d2233;
 line-height: 1.7;
-font-style: normal;
 }
 
-/* ── SHARED ── */
-em, i { font-style: normal; }
-
-@keyframes rise {
-from { opacity: 0; transform: translateY(14px); }
-to   { opacity: 1; transform: translateY(0); }
-}
-
-/* ── COVER ── */
+/* COVER */
 #cover {
 min-height: 100vh;
 display: flex;
@@ -59,577 +24,399 @@ align-items: center;
 justify-content: center;
 padding: 60px 24px;
 text-align: center;
-background: linear-gradient(160deg, #e8f4fc 0%, #f5faff 40%, #ddeef9 100%);
-position: relative;
-overflow: hidden;
+background: linear-gradient(160deg, #e8f4fc 0%, #f5faff 50%, #ddeef9 100%);
 }
 
-#cover::before {
-content: ‘’;
-position: absolute;
-width: 600px; height: 600px;
-border-radius: 50%;
-background: radial-gradient(circle, #a8d4f022 0%, transparent 70%);
-top: -200px; right: -150px;
-pointer-events: none;
-}
-
-#cover::after {
-content: ‘’;
-position: absolute;
-width: 400px; height: 400px;
-border-radius: 50%;
-background: radial-gradient(circle, #5aaee811 0%, transparent 70%);
-bottom: -100px; left: -100px;
-pointer-events: none;
-}
-
-.cover-badge {
+.badge {
 display: inline-block;
-background: var(–sky-pale);
-border: 1px solid var(–sky-light);
-color: var(–sky-deep);
-font-family: var(–sans);
+background: #dceefa;
+border: 1px solid #a8d4f0;
+color: #1a6fa8;
 font-size: 10px;
-font-weight: 600;
-letter-spacing: 0.22em;
+font-weight: 700;
+letter-spacing: 0.2em;
 text-transform: uppercase;
 padding: 5px 14px;
 margin-bottom: 28px;
 }
 
-.cover-title {
-font-family: var(–serif);
-font-size: clamp(26px, 6.5vw, 52px);
+h1 {
+font-size: clamp(24px, 6vw, 44px);
 font-weight: 900;
-line-height: 1.2;
-color: var(–ink);
-margin-bottom: 10px;
+color: #0d2233;
+margin-bottom: 12px;
 letter-spacing: 0.04em;
-white-space: nowrap;
 }
 
-.cover-title span {
-color: var(–sky-deep);
-}
+h1 span { color: #1a6fa8; }
 
-.cover-desc {
+.desc {
 font-size: 14px;
-color: var(–ink-light);
-max-width: 420px;
-margin: 0 auto 40px;
+color: #5a7a94;
+margin-bottom: 36px;
 line-height: 1.9;
 }
 
-.name-block {
-margin-bottom: 28px;
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 8px;
-}
-
-.name-block label {
-font-family: var(–sans);
-font-size: 11px;
-font-weight: 600;
-letter-spacing: 0.14em;
-color: var(–ink-light);
+.name-label {
+font-size: 12px;
+font-weight: 700;
+letter-spacing: 0.12em;
+color: #5a7a94;
 text-transform: uppercase;
+margin-bottom: 8px;
 }
 
-.name-input {
-background: var(–white);
-border: 1.5px solid var(–rule);
+#nameInput {
+display: block;
+background: #fff;
+border: 2px solid #cde3f4;
 outline: none;
-font-family: var(–sans);
+font-family: inherit;
 font-size: 18px;
-font-weight: 600;
-color: var(–ink);
+font-weight: 700;
+color: #0d2233;
 text-align: center;
 width: 260px;
 padding: 10px 16px;
-transition: border-color 0.2s, box-shadow 0.2s;
-border-radius: 0;
+margin: 0 auto 24px;
 }
 
-.name-input:focus {
-border-color: var(–sky);
-box-shadow: 0 0 0 3px var(–sky-pale);
-}
+#nameInput:focus { border-color: #2d8fd4; }
 
-.name-input::placeholder { color: var(–rule); }
-
-.start-btn {
-background: var(–sky-deep);
+#startBtn {
+display: block;
+background: #1a6fa8;
+color: #fff;
 border: none;
-color: var(–white);
-font-family: var(–sans);
-font-size: 15px;
-font-weight: 600;
-letter-spacing: 0.1em;
-padding: 14px 40px;
+font-family: inherit;
+font-size: 16px;
+font-weight: 700;
+letter-spacing: 0.08em;
+padding: 14px 48px;
 cursor: pointer;
-transition: all 0.2s;
--webkit-appearance: none;
-appearance: none;
+margin: 0 auto;
 }
 
-.start-btn:hover { background: var(–sky); transform: translateY(-1px); box-shadow: 0 6px 20px #2d8fd430; }
+#startBtn:active { background: #2d8fd4; }
 
-/* ── QUIZ ── */
-#quiz { display: none; min-height: 100vh; background: var(–sky-faint); }
+/* QUIZ */
+#quiz {
+display: none;
+background: #f0f7fd;
+min-height: 100vh;
+padding-bottom: 60px;
+}
 
-.progress-track {
-position: fixed;
-top: 0; left: 0; right: 0;
+.progress-bar {
 height: 4px;
-background: var(–rule-light);
-z-index: 100;
+background: #e8f3fb;
+position: sticky;
+top: 0;
+z-index: 10;
 }
 
 .progress-fill {
 height: 100%;
-background: linear-gradient(90deg, var(–sky-mid), var(–sky-deep));
-transition: width 0.5s cubic-bezier(0.4,0,0.2,1);
+background: #1a6fa8;
+transition: width 0.3s;
 width: 0%;
 }
 
 .quiz-top {
-padding: 24px 24px 0;
-max-width: 660px;
-margin: 0 auto;
 display: flex;
-align-items: center;
 justify-content: space-between;
-}
-
-.quiz-name {
-font-family: var(–sans);
-font-size: 14px;
+align-items: center;
+padding: 18px 20px 8px;
+font-size: 13px;
+color: #5a7a94;
 font-weight: 600;
-color: var(–sky-deep);
-}
-
-.quiz-count {
-font-family: var(–sans);
-font-size: 11px;
-color: var(–ink-light);
-letter-spacing: 0.08em;
 }
 
 .q-wrap {
-max-width: 660px;
+padding: 8px 16px 20px;
+max-width: 640px;
 margin: 0 auto;
-padding: 16px 24px 40px;
 }
 
-/* Section divider */
-.s-divider {
+.section-divider {
 display: flex;
 align-items: center;
-gap: 14px;
-margin: 36px 0 12px;
-opacity: 0;
-transform: translateY(8px);
-transition: opacity 0.4s, transform 0.4s;
-}
-
-.s-divider.visible { opacity: 1; transform: translateY(0); }
-
-.s-line { flex: 1; height: 1px; background: var(–rule); }
-
-.s-text {
-font-family: var(–sans);
+gap: 12px;
+margin: 28px 0 10px;
 font-size: 10px;
-font-weight: 600;
-letter-spacing: 0.2em;
-color: var(–sky-mid);
+letter-spacing: 0.16em;
+color: #5aaee8;
+font-weight: 700;
 text-transform: uppercase;
-white-space: nowrap;
 }
 
-/* Question card */
+.section-divider::before,
+.section-divider::after {
+content: ‘’;
+flex: 1;
+height: 1px;
+background: #cde3f4;
+}
+
 .q-card {
-background: var(–white);
-border: 1px solid var(–rule-light);
-padding: 24px 24px 20px;
-margin-bottom: 14px;
-box-shadow: 0 2px 12px #1a6fa808;
-opacity: 0;
-transform: translateY(10px);
-transition: opacity 0.4s, transform 0.4s, box-shadow 0.2s;
+background: #fff;
+border: 1px solid #e8f3fb;
+padding: 20px 18px;
+margin-bottom: 12px;
+box-shadow: 0 1px 8px rgba(26,111,168,0.05);
 }
-
-.q-card.visible { opacity: 1; transform: translateY(0); }
-.q-card:focus-within { box-shadow: 0 4px 20px #2d8fd420; border-color: var(–sky-light); }
 
 .q-tag {
 display: inline-block;
-font-family: var(–sans);
 font-size: 9px;
-font-weight: 700;
-letter-spacing: 0.18em;
+font-weight: 800;
+letter-spacing: 0.16em;
 text-transform: uppercase;
 padding: 3px 10px;
-margin-bottom: 14px;
+margin-bottom: 12px;
 }
 
-.tag-strength { background: var(–green-bg); color: var(–green); }
-.tag-growth   { background: var(–amber-bg); color: var(–amber); }
-.tag-blind    { background: var(–rose-bg);  color: var(–rose); }
+.tag-strength { background: #e8f7f1; color: #1e8a5e; }
+.tag-growth   { background: #fdf3e4; color: #b86a10; }
+.tag-blind    { background: #fce8ef; color: #b03060; }
 
 .q-text {
-font-family: var(–sans);
-font-size: 16px;
-font-weight: 600;
+font-size: 15px;
+font-weight: 700;
 line-height: 1.5;
-color: var(–ink);
-margin-bottom: 8px;
+color: #0d2233;
+margin-bottom: 6px;
 }
 
 .q-hint {
 font-size: 12px;
-color: var(–ink-light);
-margin-bottom: 14px;
-line-height: 1.7;
+color: #5a7a94;
+margin-bottom: 12px;
+line-height: 1.6;
 }
 
 .q-textarea {
 width: 100%;
-background: var(–sky-faint);
-border: 1.5px solid var(–rule-light);
+background: #f0f7fd;
+border: 1.5px solid #e8f3fb;
 outline: none;
-font-family: var(–serif);
+font-family: inherit;
 font-size: 14px;
-color: var(–ink);
-line-height: 1.8;
+color: #0d2233;
+line-height: 1.7;
 resize: none;
-padding: 12px 14px;
+padding: 10px 12px;
 min-height: 80px;
-transition: border-color 0.2s, background 0.2s;
 }
 
-.q-textarea:focus { border-color: var(–sky); background: var(–white); }
-.q-textarea::placeholder { color: var(–sky-light); }
-
-.submit-wrap {
-padding: 8px 0 0;
-}
+.q-textarea:focus { border-color: #2d8fd4; background: #fff; }
+.q-textarea::placeholder { color: #a8d4f0; }
 
 .submit-btn {
+display: block;
 width: 100%;
-padding: 16px;
-background: var(–sky-deep);
-color: var(–white);
+background: #1a6fa8;
+color: #fff;
 border: none;
-font-family: var(–sans);
-font-size: 14px;
-font-weight: 600;
+font-family: inherit;
+font-size: 15px;
+font-weight: 700;
 letter-spacing: 0.08em;
+padding: 16px;
 cursor: pointer;
-transition: all 0.2s;
+margin-top: 20px;
 }
 
-.submit-btn:hover { background: var(–sky); box-shadow: 0 6px 20px #2d8fd430; }
+.submit-btn:active { background: #2d8fd4; }
 
 .skip-note {
 text-align: center;
 font-size: 11px;
-color: var(–ink-light);
+color: #5a7a94;
 margin-top: 10px;
-letter-spacing: 0.04em;
 }
 
-/* ── LOADING ── */
-#loading {
-display: none;
-min-height: 100vh;
-background: var(–sky-faint);
-align-items: center;
-justify-content: center;
-flex-direction: column;
-gap: 20px;
-}
-
-.loading-icon {
-width: 48px; height: 48px;
-border: 3px solid var(–sky-pale);
-border-top-color: var(–sky-deep);
-border-radius: 50%;
-animation: spin 0.9s linear infinite;
-}
-
-@keyframes spin { to { transform: rotate(360deg); } }
-
-.loading-text {
-font-family: var(–sans);
-font-size: 14px;
-font-weight: 600;
-color: var(–sky-deep);
-letter-spacing: 0.06em;
-}
-
-.loading-sub {
-font-size: 12px;
-color: var(–ink-light);
-max-width: 280px;
-text-align: center;
-line-height: 1.7;
-}
-
-/* ── RESULT ── */
+/* RESULT */
 #result {
 display: none;
-background: var(–white);
 min-height: 100vh;
 }
 
 .result-hero {
-background: linear-gradient(135deg, var(–sky-deep) 0%, var(–sky) 60%, var(–sky-mid) 100%);
-padding: 56px 24px 44px;
+background: linear-gradient(135deg, #1a6fa8 0%, #2d8fd4 60%, #5aaee8 100%);
+padding: 52px 24px 40px;
 text-align: center;
-position: relative;
-overflow: hidden;
-}
-
-.result-hero::before {
-content: ‘’;
-position: absolute;
-width: 500px; height: 500px;
-border-radius: 50%;
-background: rgba(255,255,255,0.05);
-top: -200px; right: -100px;
 }
 
 .result-hero-label {
-font-family: var(–sans);
 font-size: 10px;
 font-weight: 700;
-letter-spacing: 0.24em;
+letter-spacing: 0.22em;
 text-transform: uppercase;
-color: var(–sky-light);
-margin-bottom: 14px;
-opacity: 0;
-animation: rise 0.6s ease 0.1s forwards;
+color: #a8d4f0;
+margin-bottom: 12px;
 }
 
 .result-hero-name {
-font-family: var(–sans);
-font-size: clamp(26px, 5vw, 44px);
-font-weight: 700;
-color: var(–white);
-line-height: 1.2;
-margin-bottom: 12px;
-letter-spacing: -0.01em;
-opacity: 0;
-animation: rise 0.6s ease 0.25s forwards;
+font-size: clamp(24px, 5vw, 40px);
+font-weight: 900;
+color: #fff;
+margin-bottom: 10px;
+letter-spacing: 0.02em;
 }
 
 .result-hero-sub {
 font-size: 13px;
-color: rgba(255,255,255,0.75);
-max-width: 380px;
+color: rgba(255,255,255,0.8);
+max-width: 360px;
 margin: 0 auto;
 line-height: 1.8;
-opacity: 0;
-animation: rise 0.6s ease 0.4s forwards;
 }
 
 .result-body {
-max-width: 680px;
+max-width: 640px;
 margin: 0 auto;
-padding: 40px 24px 80px;
+padding: 32px 16px 80px;
 }
 
-/* AI Analysis card */
 .ai-card {
-background: linear-gradient(135deg, var(–sky-faint) 0%, #eaf5ff 100%);
-border: 1.5px solid var(–sky-light);
-padding: 28px 28px 24px;
-margin-bottom: 36px;
-position: relative;
-opacity: 0;
-animation: rise 0.6s ease 0.5s forwards;
+background: #eaf5ff;
+border: 1.5px solid #a8d4f0;
+padding: 24px 20px;
+margin-bottom: 32px;
 }
 
-.ai-card-header {
+.ai-header {
 display: flex;
 align-items: center;
 gap: 10px;
-margin-bottom: 16px;
+margin-bottom: 14px;
 }
 
 .ai-badge {
-background: var(–sky-deep);
-color: var(–white);
-font-family: var(–sans);
+background: #1a6fa8;
+color: #fff;
 font-size: 9px;
-font-weight: 700;
-letter-spacing: 0.18em;
+font-weight: 800;
+letter-spacing: 0.16em;
 text-transform: uppercase;
 padding: 4px 10px;
 }
 
 .ai-title {
-font-family: var(–sans);
 font-size: 14px;
-font-weight: 700;
-color: var(–sky-deep);
+font-weight: 800;
+color: #1a6fa8;
 }
 
 .ai-content {
 font-size: 14px;
-color: var(–ink-mid);
+color: #2e4a60;
 line-height: 1.9;
 white-space: pre-wrap;
 }
 
-.ai-content.loading-text-inline {
-color: var(–ink-light);
-display: flex;
-align-items: center;
-gap: 10px;
-}
-
-/* Answer sections */
-.res-section {
-margin-bottom: 32px;
-opacity: 0;
-animation: rise 0.5s ease forwards;
-}
+.res-section { margin-bottom: 28px; }
 
 .res-section-header {
 display: flex;
 align-items: center;
 gap: 10px;
-margin-bottom: 16px;
-padding-bottom: 10px;
-border-bottom: 2px solid var(–rule-light);
+margin-bottom: 14px;
+padding-bottom: 8px;
+border-bottom: 2px solid #e8f3fb;
 }
 
-.res-section-dot {
+.dot {
 width: 10px; height: 10px;
 border-radius: 50%;
 flex-shrink: 0;
 }
 
-.dot-green { background: var(–green); }
-.dot-amber { background: var(–amber); }
-.dot-rose  { background: var(–rose); }
+.dot-green { background: #1e8a5e; }
+.dot-amber { background: #b86a10; }
+.dot-rose  { background: #b03060; }
 
 .res-section-title {
-font-family: var(–sans);
-font-size: 12px;
-font-weight: 700;
+font-size: 11px;
+font-weight: 800;
 letter-spacing: 0.14em;
 text-transform: uppercase;
 }
 
-.title-green { color: var(–green); }
-.title-amber { color: var(–amber); }
-.title-rose  { color: var(–rose); }
-
-.res-items { display: flex; flex-direction: column; gap: 12px; }
+.title-green { color: #1e8a5e; }
+.title-amber { color: #b86a10; }
+.title-rose  { color: #b03060; }
 
 .res-item {
-background: var(–sky-faint);
-border: 1px solid var(–rule-light);
-padding: 16px 18px;
+background: #f0f7fd;
+border: 1px solid #e8f3fb;
+padding: 14px 16px;
+margin-bottom: 10px;
 }
 
 .res-item-q {
-font-family: var(–sans);
 font-size: 10px;
-font-weight: 600;
-letter-spacing: 0.08em;
-color: var(–ink-light);
-margin-bottom: 8px;
+font-weight: 700;
+letter-spacing: 0.06em;
+color: #5a7a94;
 text-transform: uppercase;
+margin-bottom: 6px;
 }
 
-.res-item-a {
-font-size: 14px;
-color: var(–ink);
-line-height: 1.7;
-}
+.res-item-a { font-size: 14px; color: #0d2233; line-height: 1.7; }
+.res-item-a.empty { color: #a8d4f0; font-size: 12px; }
 
-.res-item-a.empty { color: var(–sky-light); font-size: 12px; }
-
-/* Result actions */
 .result-actions {
-margin-top: 40px;
 display: flex;
-gap: 12px;
+gap: 10px;
 flex-wrap: wrap;
-opacity: 0;
-animation: rise 0.5s ease 1s forwards;
+margin-top: 36px;
 }
 
 .rbtn {
-font-family: var(–sans);
-font-size: 12px;
-font-weight: 600;
+font-family: inherit;
+font-size: 13px;
+font-weight: 700;
 letter-spacing: 0.08em;
-padding: 12px 28px;
+padding: 12px 24px;
 cursor: pointer;
-border: 1.5px solid;
+border: 2px solid;
 background: transparent;
-transition: all 0.2s;
 }
 
-.rbtn-sky { border-color: var(–sky-deep); color: var(–sky-deep); }
-.rbtn-sky:hover { background: var(–sky-deep); color: var(–white); }
+.rbtn-sky { border-color: #1a6fa8; color: #1a6fa8; }
+.rbtn-sky:active { background: #1a6fa8; color: #fff; }
 
-.rbtn-light { border-color: var(–rule); color: var(–ink-light); }
-.rbtn-light:hover { border-color: var(–ink-light); color: var(–ink); }
-
-@media (max-width: 500px) {
-.q-card { padding: 18px 16px; }
-.ai-card { padding: 20px 16px; }
-.result-hero { padding: 40px 20px 32px; }
-.result-actions { flex-direction: column; }
-}
+.rbtn-light { border-color: #cde3f4; color: #5a7a94; }
 
 @media print {
-#cover, #quiz, #loading { display: none !important; }
+#cover, #quiz { display: none !important; }
 #result { display: block !important; }
-.result-hero { background: var(–sky-deep) !important; -webkit-print-color-adjust: exact; }
 .result-actions { display: none; }
-.ai-card, .res-item { break-inside: avoid; }
 }
 </style>
 
 </head>
 <body>
 
-<!-- COVER -->
-
 <div id="cover">
-  <div class="cover-badge">Self Discovery · 自我探索</div>
-  <h1 class="cover-title">你比你以為的<span>更好。</span></h1>
-  <p class="cover-desc">這不是測驗，沒有標準答案。<br>只是一些問題，讓你停下來想一想。</p>
-  <div class="name-block">
-    <label>你叫什麼名字？</label>
-    <input class="name-input" id="nameInput" type="text" placeholder="填你的名字或暱稱" maxlength="20">
-  </div>
-  <button class="start-btn" onclick="startQuiz()">開始 →</button>
+  <div class="badge">Self Discovery · 自我探索</div>
+  <h1>你比你以為的<span>更好。</span></h1>
+  <p class="desc">這不是測驗，沒有標準答案。<br>只是一些問題，讓你停下來想一想。</p>
+  <p class="name-label">你叫什麼名字？</p>
+  <input id="nameInput" type="text" placeholder="填你的名字或暱稱" maxlength="20">
+  <button id="startBtn" onclick="startQuiz()">開始 →</button>
 </div>
 
-<!-- QUIZ -->
-
 <div id="quiz">
-  <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+  <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
   <div class="quiz-top">
-    <span class="quiz-name" id="quizName"></span>
-    <span class="quiz-count" id="quizCount"></span>
+    <span id="quizName"></span>
+    <span id="quizCount"></span>
   </div>
   <div class="q-wrap" id="qWrap"></div>
 </div>
-
-<!-- LOADING (unused) -->
-
-<!-- RESULT -->
 
 <div id="result">
   <div class="result-hero">
@@ -638,9 +425,9 @@ transition: all 0.2s;
     <div class="result-hero-sub" id="resultSub"></div>
   </div>
   <div class="result-body">
-    <div class="ai-card" id="aiCard">
-      <div class="ai-card-header">
-        <div class="ai-badge">AI 個人化分析</div>
+    <div class="ai-card">
+      <div class="ai-header">
+        <div class="ai-badge">個人化分析</div>
         <div class="ai-title">給你的專屬建議</div>
       </div>
       <div class="ai-content" id="aiContent"></div>
@@ -654,198 +441,164 @@ transition: all 0.2s;
 </div>
 
 <script>
-const questions = [
-  { tag:'strength', tagText:'✦ 優勢探索', text:'有沒有某件事，你不覺得難，但看到別人覺得很費力？', hint:'可能是溝通、記憶細節、快速判斷、陪伴……任何事都算。', placeholder:'不用謙虛，就說你想到的第一個…' },
-  { tag:'strength', tagText:'✦ 優勢探索', text:'你的朋友或身邊的人，最常在什麼事情上找你？', hint:'他們來找你，代表他們相信你在這方面是可靠的。', placeholder:'「每次要……的時候，都會想到你」' },
-  { tag:'strength', tagText:'✦ 優勢探索', text:'做哪件事的時候，你完全不需要提醒自己要努力？', hint:'就是那種做起來自然、甚至停不下來的事。', placeholder:'一進入那個狀態，時間就不知道去哪了…' },
-  { tag:'strength', tagText:'✦ 優勢探索', text:'你最近做過，讓自己心裡有點驕傲的一件小事是什麼？', hint:'不用是大事。哪怕只是一句話說對了、一件事沒放棄。', placeholder:'就算沒有人知道，你自己知道…' },
-  { tag:'growth',   tagText:'▲ 成長空間', text:'你有沒有一個「一直想改，但一直沒改」的習慣？', hint:'不是要你批判自己，只是誠實說出來。說出來，它就沒那麼大了。', placeholder:'說出來不代表你很糟，只代表你夠誠實…' },
-  { tag:'growth',   tagText:'▲ 成長空間', text:'什麼情況下，你最容易對自己不滿意？', hint:'是跟別人比較？事情沒達到預期？還是某種感覺來了？', placeholder:'這個情況通常長這樣…' },
-  { tag:'growth',   tagText:'▲ 成長空間', text:'如果有人能替你解決一個困擾，你希望那個困擾是什麼？', hint:'現實面、心態面都可以。不用想太多，直覺說。', placeholder:'我最希望有人能幫我…' },
-  { tag:'blind',    tagText:'◈ 盲點觀察', text:'你有沒有收過某個評價，當下覺得不舒服，但後來知道對方說的是真的？', hint:'不舒服往往是因為太準。這道題可以跳過，但建議你想一想。', placeholder:'那個評價是…（可以不寫完整，寫關鍵字也行）' },
-  { tag:'blind',    tagText:'◈ 盲點觀察', text:'你身邊最了解你的人，會說你的缺點是什麼？', hint:'試著用那個人的視角說。不是你認為的缺點，是「他們說的」那個。', placeholder:'他們大概會說，我這個人有時候…' },
-  { tag:'growth',   tagText:'◇ 最後一題', text:'如果半年後的你，有一件事比現在的你做得更好，你最希望是哪件事？', hint:'不是願望清單。就選一件，最重要的那個。', placeholder:'我希望那時候的我，已經…' }
+var questions = [
+  { tag:'strength', tagText:'✦ 優勢探索', text:'有沒有某件事，你不覺得難，但看到別人覺得很費力？', hint:'可能是溝通、記憶細節、快速判斷、陪伴……任何事都算。', placeholder:'不用謙虛，就說你想到的第一個' },
+  { tag:'strength', tagText:'✦ 優勢探索', text:'你的朋友或身邊的人，最常在什麼事情上找你？', hint:'他們來找你，代表他們相信你在這方面是可靠的。', placeholder:'每次要……的時候，都會想到你' },
+  { tag:'strength', tagText:'✦ 優勢探索', text:'做哪件事的時候，你完全不需要提醒自己要努力？', hint:'就是那種做起來自然、甚至停不下來的事。', placeholder:'一進入那個狀態，時間就不知道去哪了' },
+  { tag:'strength', tagText:'✦ 優勢探索', text:'你最近做過，讓自己心裡有點驕傲的一件小事是什麼？', hint:'不用是大事。哪怕只是一句話說對了、一件事沒放棄。', placeholder:'就算沒有人知道，你自己知道' },
+  { tag:'growth', tagText:'▲ 成長空間', text:'你有沒有一個一直想改、但一直沒改的習慣？', hint:'不是要你批判自己，只是誠實說出來。說出來，它就沒那麼大了。', placeholder:'說出來不代表你很糟，只代表你夠誠實' },
+  { tag:'growth', tagText:'▲ 成長空間', text:'什麼情況下，你最容易對自己不滿意？', hint:'是跟別人比較？事情沒達到預期？還是某種感覺來了？', placeholder:'這個情況通常長這樣' },
+  { tag:'growth', tagText:'▲ 成長空間', text:'如果有人能替你解決一個困擾，你希望那個困擾是什麼？', hint:'現實面、心態面都可以。不用想太多，直覺說。', placeholder:'我最希望有人能幫我' },
+  { tag:'blind', tagText:'◈ 盲點觀察', text:'你有沒有收過某個評價，當下覺得不舒服，但後來知道對方說的是真的？', hint:'不舒服往往是因為太準。這道題可以跳過，但建議想一想。', placeholder:'那個評價是（可以只寫關鍵字）' },
+  { tag:'blind', tagText:'◈ 盲點觀察', text:'你身邊最了解你的人，會說你的缺點是什麼？', hint:'試著用那個人的視角說。不是你認為的缺點，是他們說的那個。', placeholder:'他們大概會說，我這個人有時候' },
+  { tag:'growth', tagText:'◇ 最後一題', text:'如果半年後的你，有一件事比現在做得更好，你最希望是哪件事？', hint:'不是願望清單。就選一件，最重要的那個。', placeholder:'我希望那時候的我，已經' }
 ];
 
-const breaks = { 0:'先從你做得好的地方開始', 4:'誠實看一看還沒解決的部分', 7:'有些事，我們自己最後才看到', 9:'最後一題' };
-
-let answers = new Array(questions.length).fill('');
-let userName = '';
+var breaks = { 0:'先從你做得好的地方開始', 4:'誠實看一看還沒解決的部分', 7:'有些事，我們自己最後才看到', 9:'最後一題' };
+var answers = new Array(questions.length).fill('');
+var userName = '';
 
 function startQuiz() {
   userName = document.getElementById('nameInput').value.trim() || '你';
   document.getElementById('cover').style.display = 'none';
-  const quiz = document.getElementById('quiz');
-  quiz.style.display = 'block';
+  document.getElementById('quiz').style.display = 'block';
   document.getElementById('quizName').textContent = '嗨，' + userName + '。';
   buildQuestions();
   updateProgress();
+  window.scrollTo(0, 0);
 }
 
 function buildQuestions() {
-  const wrap = document.getElementById('qWrap');
+  var wrap = document.getElementById('qWrap');
   wrap.innerHTML = '';
 
-  questions.forEach((q, i) => {
+  for (var i = 0; i < questions.length; i++) {
+    var q = questions[i];
+
     if (breaks[i]) {
-      const div = document.createElement('div');
-      div.className = 's-divider';
-      div.innerHTML = `<div class="s-line"></div><span class="s-text">${breaks[i]}</span><div class="s-line"></div>`;
+      var div = document.createElement('div');
+      div.className = 'section-divider';
+      div.textContent = breaks[i];
       wrap.appendChild(div);
     }
 
-    const card = document.createElement('div');
+    var card = document.createElement('div');
     card.className = 'q-card';
-    card.innerHTML = `
-      <div class="q-tag tag-${q.tag}">${q.tagText}</div>
-      <div class="q-text">${q.text}</div>
-      <div class="q-hint">${q.hint}</div>
-      <textarea class="q-textarea" placeholder="${q.placeholder}" rows="3"></textarea>
+
+    var tagClass = q.tag === 'strength' ? 'tag-strength' : q.tag === 'growth' ? 'tag-growth' : 'tag-blind';
+    card.innerHTML =
+      '<div class="q-tag ' + tagClass + '">' + q.tagText + '</div>' +
+      '<div class="q-text">' + q.text + '</div>' +
+      '<div class="q-hint">' + q.hint + '</div>' +
+      '<textarea class="q-textarea" placeholder="' + q.placeholder + '" rows="3"></textarea>';
 
 ```
-`;
-card.querySelector('textarea').value = answers[i];
-card.querySelector('textarea').addEventListener('input', function() {
-  answers[i] = this.value;
-  updateProgress();
-  autoResize(this);
-});
+(function(index) {
+  var ta = card.querySelector('textarea');
+  ta.value = answers[index];
+  ta.addEventListener('input', function() {
+    answers[index] = this.value;
+    updateProgress();
+    this.style.height = 'auto';
+    this.style.height = Math.max(80, this.scrollHeight) + 'px';
+  });
+})(i);
+
 wrap.appendChild(card);
 ```
 
-});
-
-const sub = document.createElement(‘div’);
-sub.className = ‘submit-wrap’;
-sub.innerHTML = `<button class="submit-btn" onclick="handleSubmit()">查看我的自我盤點結果 →</button> <p class="skip-note">不用填完每一題，想跳過的就跳過</p>`;
-wrap.appendChild(sub);
-
-setTimeout(() => {
-wrap.querySelectorAll(’.q-card, .s-divider’).forEach((el, i) => {
-setTimeout(() => el.classList.add(‘visible’), i * 55);
-});
-}, 80);
 }
 
-function autoResize(el) {
-el.style.height = ‘auto’;
-el.style.height = Math.max(80, el.scrollHeight) + ‘px’;
+var sub = document.createElement(‘div’);
+sub.innerHTML = ‘<button class="submit-btn" onclick="showResult()">查看我的自我盤點結果 →</button><p class="skip-note">不用填完每一題，想跳過的就跳過</p>’;
+wrap.appendChild(sub);
 }
 
 function updateProgress() {
-const filled = answers.filter(a => a.trim()).length;
+var filled = answers.filter(function(a) { return a.trim(); }).length;
 document.getElementById(‘progressFill’).style.width = (filled / questions.length * 100) + ‘%’;
 document.getElementById(‘quizCount’).textContent = filled + ’ / ’ + questions.length + ’ 題已填’;
 }
 
-function handleSubmit() {
-document.getElementById(‘quiz’).style.display = ‘none’;
-window.scrollTo(0, 0);
-const analysis = generateAnalysis();
-showResult(analysis);
-}
-
 function generateAnalysis() {
-const s = answers.slice(0, 4).filter(a => a.trim());
-const g = answers.slice(4, 7).filter(a => a.trim());
-const b = answers.slice(7, 9).filter(a => a.trim());
-const last = answers[9].trim();
-const filled = answers.filter(a => a.trim()).length;
+var s = answers.slice(0, 4).filter(function(a) { return a.trim(); });
+var g = answers.slice(4, 7).filter(function(a) { return a.trim(); });
+var b = answers.slice(7, 9).filter(function(a) { return a.trim(); });
+var last = answers[9].trim();
+var filled = answers.filter(function(a) { return a.trim(); }).length;
 
-// ── 核心優勢 ──
-let strength = ‘’;
-if (s.length >= 3) {
-strength = `從你的回答來看，你對自己的優勢其實有相當清楚的認識——這本身就是一種自覺，很多人做不到。你提到的那些事，背後有一個共同點：你在這些地方是真的投入，不是勉強。這種「不需要提醒自己努力」的狀態，才是真正值得放大的地方。`;
-} else if (s.length >= 1) {
-strength = `你填的優勢不多，但你說出來的那個，是真實的。比起列一堆說不清楚的優點，你能說出具體的一件事，已經比大多數人更誠實了。`;
-} else {
-strength = `優勢那幾題你跳過了。不一定是沒有優勢——有時候是太習慣了，反而看不見。試著問問身邊的人：「你覺得我做什麼事特別自然？」答案往往讓你意外。`;
+var strength = s.length >= 3
+? ‘從你的回答來看，你對自己的優勢有相當清楚的認識——這本身就是一種自覺，很多人做不到。你提到的那些事，背後有一個共同點：你在這些地方是真的投入，不是勉強。這種不需要提醒自己努力的狀態，才是真正值得放大的地方。’
+: s.length >= 1
+? ‘你說出來的那個優勢是真實的。比起列一堆說不清楚的優點，能說出具體的一件事，已經比大多數人更誠實了。’
+: ‘優勢那幾題你跳過了。不一定是沒有優勢——有時候是太習慣了，反而看不見。試著問問身邊的人：你覺得我做什麼事特別自然？答案往往讓你意外。’;
+
+var growth = g.length >= 2
+? ‘你在成長那幾題說得很直接，這是好事。能說出一直想改但沒改的人，通常不是缺乏能力，而是還沒找到對的切入點。你提到的困擾，解法往往不是更努力，而是改變一個小習慣或換一個角度。’
+: g.length >= 1
+? ‘你提到了一個想改變的地方。光是願意說出來，已經是開始了。接下來的問題不是要不要改，而是從哪個最小的動作開始。’
+: ‘成長的部分你選擇跳過，沒關係。等你準備好的時候，這幾題值得再回來想一想。’;
+
+var blind = b.length >= 1
+? ‘你願意填盲點那幾題，這不容易——大多數人會跳過。你說的那個別人對你的評價，值得多停留一下。不舒服的評價往往準，不是因為對方壞，而是他們看到了你還沒準備好承認的部分。’
+: ‘盲點之所以是盲點，就是因為自己不容易看到。如果你身邊有一個說話直接又真心對你好的人，可以試著問他：你覺得我哪裡有時候會讓人誤解？’;
+
+var closing = last
+? ‘你說半年後希望自己「’ + last.slice(0, 20) + (last.length > 20 ? ‘……’ : ‘’) + ‘」——這個答案本身已經告訴你方向了。你不是不知道要去哪，你只是需要開始動。’
+: filled >= 6
+? ‘你填了很多，代表你是認真的。認真的人最容易犯的錯，是想太多、動太少。先做一件小的，再說。’
+: ‘填多填少都沒關係，重要的是你打開了這個問卷。願意停下來問自己問題的人，早晚會找到答案。’;
+
+return ‘【你的核心優勢】\n’ + strength + ‘\n\n【最值得關注的成長機會】\n’ + growth + ‘\n\n【一個你可能沒注意到的盲點】\n’ + blind + ‘\n\n【給 ’ + userName + ’ 的一句話】\n’ + closing;
 }
 
-// ── 成長機會 ──
-let growth = ‘’;
-if (g.length >= 2) {
-growth = `你在成長那幾題說得很直接，這是好事。能說出「一直想改但沒改」的人，通常不是缺乏能力，而是還沒找到對的切入點。你提到的困擾，解法往往不是「更努力」，而是改變一個小習慣或換一個角度。`;
-} else if (g.length >= 1) {
-growth = `你提到了一個想改變的地方。光是願意說出來，已經是開始了。接下來的問題不是「要不要改」，而是「從哪個最小的動作開始」。`;
-} else {
-growth = `成長的部分你選擇跳過，沒關係。有時候不是不想改變，是還沒準備好面對。等你準備好的時候，這幾題值得再回來想一想。`;
-}
-
-// ── 盲點 ──
-let blind = ‘’;
-if (b.length >= 1) {
-blind = `你願意填盲點那幾題，這不容易——大多數人會跳過。你說的那個別人對你的評價，值得多停留一下。不舒服的評價往往準，不是因為對方壞，而是他們看到了你還沒準備好承認的部分。`;
-} else {
-blind = `盲點那兩題你跳過了，這很正常。盲點之所以是盲點，就是因為自己不容易看到。如果你身邊有一個說話直接又真心對你好的人，可以試著問他：「你覺得我哪裡有時候會讓人誤解？」`;
-}
-
-// ── 一句話建議 ──
-let closing = ‘’;
-if (last) {
-closing = `你說半年後希望自己「${last.slice(0, 20)}${last.length > 20 ? '……' : ''}」——這個答案本身已經告訴你方向了。你不是不知道要去哪，你只是需要開始動。`;
-} else if (filled >= 6) {
-closing = `你填了很多，代表你是認真的。認真的人最容易犯的錯，是想太多、動太少。先做一件小的，再說。`;
-} else {
-closing = `填多填少都沒關係，重要的是你打開了這個問卷。願意停下來問自己問題的人，早晚會找到答案。`;
-}
-
-return `【你的核心優勢】\n${strength}\n\n【最值得關注的成長機會】\n${growth}\n\n【一個你可能沒注意到的盲點】\n${blind}\n\n【給 ${userName} 的一句話】\n${closing}`;
-}
-
-function showResult(aiText) {
+function showResult() {
+document.getElementById(‘quiz’).style.display = ‘none’;
 document.getElementById(‘result’).style.display = ‘block’;
 window.scrollTo(0, 0);
 
-const filled = answers.filter(a => a.trim()).length;
-const sub = filled >= 7
+var filled = answers.filter(function(a) { return a.trim(); }).length;
+var sub = filled >= 7
 ? ‘你認真填完了這份問卷。這就是了解自己的方式——不是找答案，是願意問自己問題。’
 : ‘有些題你選擇跳過，也許那裡有什麼在等你。慢慢來，不急。’;
 
 document.getElementById(‘resultName’).textContent = userName + ‘，你好。’;
 document.getElementById(‘resultSub’).textContent = sub;
-document.getElementById(‘aiContent’).textContent = aiText;
+document.getElementById(‘aiContent’).textContent = generateAnalysis();
 
-// Answer sections
-const grouped = {
-strength: questions.map((q, i) => ({q, a: answers[i], i})).filter(x => x.q.tag === ‘strength’),
-growth:   questions.map((q, i) => ({q, a: answers[i], i})).filter(x => x.q.tag === ‘growth’),
-blind:    questions.map((q, i) => ({q, a: answers[i], i})).filter(x => x.q.tag === ‘blind’),
+var grouped = {
+strength: questions.map(function(q, i) { return {q:q, a:answers[i]}; }).filter(function(x) { return x.q.tag === ‘strength’; }),
+growth:   questions.map(function(q, i) { return {q:q, a:answers[i]}; }).filter(function(x) { return x.q.tag === ‘growth’; }),
+blind:    questions.map(function(q, i) { return {q:q, a:answers[i]}; }).filter(function(x) { return x.q.tag === ‘blind’; })
 };
 
-const block = document.getElementById(‘answersBlock’);
+var block = document.getElementById(‘answersBlock’);
 block.innerHTML = ‘’;
 
-const sections = [
+var sections = [
 { key:‘strength’, dotClass:‘dot-green’, titleClass:‘title-green’, label:‘✦ 優勢探索’ },
 { key:‘growth’,   dotClass:‘dot-amber’, titleClass:‘title-amber’, label:‘▲ 成長空間與目標’ },
-{ key:‘blind’,    dotClass:‘dot-rose’,  titleClass:‘title-rose’,  label:‘◈ 盲點觀察’ },
+{ key:‘blind’,    dotClass:‘dot-rose’,  titleClass:‘title-rose’,  label:‘◈ 盲點觀察’ }
 ];
 
-sections.forEach((s, si) => {
-const sec = document.createElement(‘div’);
+for (var si = 0; si < sections.length; si++) {
+var s = sections[si];
+var sec = document.createElement(‘div’);
 sec.className = ‘res-section’;
-sec.style.animationDelay = (0.6 + si * 0.12) + ‘s’;
 
 ```
-const rows = grouped[s.key].map(({q, a}) => `
-  <div class="res-item">
-    <div class="res-item-q">${q.text}</div>
-    <div class="res-item-a ${a.trim() ? '' : 'empty'}">${a.trim() || '（這題跳過了）'}</div>
-  </div>
-`).join('');
+var rows = '';
+var items = grouped[s.key];
+for (var ri = 0; ri < items.length; ri++) {
+  var item = items[ri];
+  rows += '<div class="res-item"><div class="res-item-q">' + item.q.text + '</div><div class="res-item-a' + (item.a.trim() ? '' : ' empty') + '">' + (item.a.trim() || '（這題跳過了）') + '</div></div>';
+}
 
-sec.innerHTML = `
-  <div class="res-section-header">
-    <div class="res-section-dot ${s.dotClass}"></div>
-    <div class="res-section-title ${s.titleClass}">${s.label}</div>
-  </div>
-  <div class="res-items">${rows}</div>
-`;
+sec.innerHTML = '<div class="res-section-header"><div class="dot ' + s.dotClass + '"></div><div class="res-section-title ' + s.titleClass + '">' + s.label + '</div></div><div>' + rows + '</div>';
 block.appendChild(sec);
 ```
 
-});
+}
 }
 
 function restart() {
