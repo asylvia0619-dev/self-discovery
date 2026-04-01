@@ -5,8 +5,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>你比你以為的更好</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700;900&family=Sora:wght@300;400;600;700&display=swap" rel="stylesheet">
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500;700;900&display=swap');
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
@@ -28,6 +28,8 @@
 –amber-bg:   #fdf3e4;
 –rose:       #b03060;
 –rose-bg:    #fce8ef;
+–serif: ‘Noto Serif TC’, ‘Source Han Serif TC’, ‘思源宋體’, serif;
+–sans: ‘PingFang TC’, ‘Heiti TC’, ‘Microsoft JhengHei’, sans-serif;
 }
 
 html { font-size: 15px; scroll-behavior: smooth; }
@@ -35,7 +37,7 @@ html { font-size: 15px; scroll-behavior: smooth; }
 body {
 background: var(–sky-faint);
 color: var(–ink);
-font-family: ‘Noto Serif TC’, serif;
+font-family: var(–serif);
 line-height: 1.7;
 font-style: normal;
 }
@@ -87,7 +89,7 @@ display: inline-block;
 background: var(–sky-pale);
 border: 1px solid var(–sky-light);
 color: var(–sky-deep);
-font-family: ‘Sora’, sans-serif;
+font-family: var(–sans);
 font-size: 10px;
 font-weight: 600;
 letter-spacing: 0.22em;
@@ -99,7 +101,7 @@ animation: rise 0.7s ease 0.1s forwards;
 }
 
 .cover-title {
-font-family: ‘Noto Serif TC’, serif;
+font-family: var(–serif);
 font-size: clamp(26px, 6.5vw, 52px);
 font-weight: 900;
 line-height: 1.2;
@@ -136,7 +138,7 @@ gap: 8px;
 }
 
 .name-block label {
-font-family: ‘Sora’, sans-serif;
+font-family: var(–sans);
 font-size: 11px;
 font-weight: 600;
 letter-spacing: 0.14em;
@@ -148,7 +150,7 @@ text-transform: uppercase;
 background: var(–white);
 border: 1.5px solid var(–rule);
 outline: none;
-font-family: ‘Sora’, sans-serif;
+font-family: var(–sans);
 font-size: 18px;
 font-weight: 600;
 color: var(–ink);
@@ -170,8 +172,8 @@ box-shadow: 0 0 0 3px var(–sky-pale);
 background: var(–sky-deep);
 border: none;
 color: var(–white);
-font-family: ‘Sora’, sans-serif;
-font-size: 13px;
+font-family: var(–sans);
+font-size: 15px;
 font-weight: 600;
 letter-spacing: 0.1em;
 padding: 14px 40px;
@@ -179,6 +181,8 @@ cursor: pointer;
 transition: all 0.2s;
 opacity: 0;
 animation: rise 0.7s ease 0.9s forwards;
+-webkit-appearance: none;
+appearance: none;
 }
 
 .start-btn:hover { background: var(–sky); transform: translateY(-1px); box-shadow: 0 6px 20px #2d8fd430; }
@@ -211,14 +215,14 @@ justify-content: space-between;
 }
 
 .quiz-name {
-font-family: ‘Sora’, sans-serif;
+font-family: var(–sans);
 font-size: 14px;
 font-weight: 600;
 color: var(–sky-deep);
 }
 
 .quiz-count {
-font-family: ‘Sora’, sans-serif;
+font-family: var(–sans);
 font-size: 11px;
 color: var(–ink-light);
 letter-spacing: 0.08em;
@@ -246,7 +250,7 @@ transition: opacity 0.4s, transform 0.4s;
 .s-line { flex: 1; height: 1px; background: var(–rule); }
 
 .s-text {
-font-family: ‘Sora’, sans-serif;
+font-family: var(–sans);
 font-size: 10px;
 font-weight: 600;
 letter-spacing: 0.2em;
@@ -272,7 +276,7 @@ transition: opacity 0.4s, transform 0.4s, box-shadow 0.2s;
 
 .q-tag {
 display: inline-block;
-font-family: ‘Sora’, sans-serif;
+font-family: var(–sans);
 font-size: 9px;
 font-weight: 700;
 letter-spacing: 0.18em;
@@ -286,7 +290,7 @@ margin-bottom: 14px;
 .tag-blind    { background: var(–rose-bg);  color: var(–rose); }
 
 .q-text {
-font-family: ‘Sora’, sans-serif;
+font-family: var(–sans);
 font-size: 16px;
 font-weight: 600;
 line-height: 1.5;
@@ -306,7 +310,7 @@ width: 100%;
 background: var(–sky-faint);
 border: 1.5px solid var(–rule-light);
 outline: none;
-font-family: ‘Noto Serif TC’, serif;
+font-family: var(–serif);
 font-size: 14px;
 color: var(–ink);
 line-height: 1.8;
@@ -329,7 +333,7 @@ padding: 16px;
 background: var(–sky-deep);
 color: var(–white);
 border: none;
-font-family: ‘Sora’, sans-serif;
+font-family: var(–sans);
 font-size: 14px;
 font-weight: 600;
 letter-spacing: 0.08em;
@@ -369,7 +373,7 @@ animation: spin 0.9s linear infinite;
 @keyframes spin { to { transform: rotate(360deg); } }
 
 .loading-text {
-font-family: ‘Sora’, sans-serif;
+font-family: var(–sans);
 font-size: 14px;
 font-weight: 600;
 color: var(–sky-deep);
@@ -409,7 +413,7 @@ top: -200px; right: -100px;
 }
 
 .result-hero-label {
-font-family: ‘Sora’, sans-serif;
+font-family: var(–sans);
 font-size: 10px;
 font-weight: 700;
 letter-spacing: 0.24em;
@@ -421,7 +425,7 @@ animation: rise 0.6s ease 0.1s forwards;
 }
 
 .result-hero-name {
-font-family: ‘Sora’, sans-serif;
+font-family: var(–sans);
 font-size: clamp(26px, 5vw, 44px);
 font-weight: 700;
 color: var(–white);
@@ -469,7 +473,7 @@ margin-bottom: 16px;
 .ai-badge {
 background: var(–sky-deep);
 color: var(–white);
-font-family: ‘Sora’, sans-serif;
+font-family: var(–sans);
 font-size: 9px;
 font-weight: 700;
 letter-spacing: 0.18em;
@@ -478,7 +482,7 @@ padding: 4px 10px;
 }
 
 .ai-title {
-font-family: ‘Sora’, sans-serif;
+font-family: var(–sans);
 font-size: 14px;
 font-weight: 700;
 color: var(–sky-deep);
@@ -525,7 +529,7 @@ flex-shrink: 0;
 .dot-rose  { background: var(–rose); }
 
 .res-section-title {
-font-family: ‘Sora’, sans-serif;
+font-family: var(–sans);
 font-size: 12px;
 font-weight: 700;
 letter-spacing: 0.14em;
@@ -545,7 +549,7 @@ padding: 16px 18px;
 }
 
 .res-item-q {
-font-family: ‘Sora’, sans-serif;
+font-family: var(–sans);
 font-size: 10px;
 font-weight: 600;
 letter-spacing: 0.08em;
@@ -573,7 +577,7 @@ animation: rise 0.5s ease 1s forwards;
 }
 
 .rbtn {
-font-family: ‘Sora’, sans-serif;
+font-family: var(–sans);
 font-size: 12px;
 font-weight: 600;
 letter-spacing: 0.08em;
