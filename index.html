@@ -70,6 +70,7 @@ h1 span { color:#1a6fa8; }
   <p class="nlabel">你叫什麼名字？</p>
   <input id="nameInput" type="text" placeholder="填你的名字或暱稱" maxlength="20">
   <button id="startBtn">開始 →</button>
+  <p id="jstest" style="margin-top:16px;font-size:12px;color:#999;">JS 載入中…</p>
 </div>
 <div id="quiz">
   <div class="ptrack"><div id="pbar"></div></div>
@@ -113,6 +114,8 @@ var userName = '';
 for (var i = 0; i < questions.length; i++) { answers.push(''); }
 
 window.onload = function() {
+var testEl = document.getElementById(‘jstest’);
+if (testEl) testEl.textContent = ‘JS 正常運作 ✓’;
 document.getElementById(‘startBtn’).onclick = function() { startQuiz(); return false; };
 document.getElementById(‘printBtn2’).onclick = function() { window.print(); return false; };
 document.getElementById(‘restartBtn2’).onclick = function() { restart(); return false; };
